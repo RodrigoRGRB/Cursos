@@ -13,17 +13,17 @@ for(var i = 0; i<pacientes.length; i++){
 
   var tdImc = paciente.querySelector(".info-imc");
 
-  var pesoEhValido = true;
-  var alturaEhValida = true;
+  var pesoEhValido = validaPeso(peso);
+  var alturaEhValida = validaAltura(altura);
 
-  if (peso <= 0 || peso >= 1000) {
+  if (!pesoEhValido) {
       console.log("Peso inválido!");
       pesoEhValido = false;
       tdImc.textContent = "Peso inválido";
       paciente.classList.add("paciente-invalido");
   }
 
-  if (altura <= 0 || altura >= 3.00) {
+  if (!alturaEhValida) {
       console.log("Altura inválida!");
       alturaEhValida = false;
       tdImc.textContent = "Altura inválida";
@@ -41,4 +41,52 @@ function calculaImc(peso, altura){
   imc = peso / (altura * altura);
 
   return imc.toFixed(2)
+}
+
+
+function validaPeso(peso){
+  if(peso >= 0 && peso <= 1000){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+function validaAltura(altura){
+  if(altura >= 0 && altura <= 3){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+function validaPaciente(paciente){
+
+  erros = [];
+
+  if(paciente.nome.length == 0){
+    erros.push("O nome não pode ser em branco");
+  }
+
+  if(!validaPeso(paciente.peso)){
+      erros.push("Peso invalido");
+  }
+
+  if(!validaAltura(paciente.altura)){
+    erros.push("Altura invalida");
+  } 
+
+  if(paciente.gordura.length == 0){
+    erros.push("Gordura não pode ser em branco");
+  }
+
+  if(paciente.peso.length == 0){
+    erros.push("Peso não pode ser em branco");
+  }
+
+  if(paciente.altura.length == 0){
+    erros.push("Altura não pode ser em branco");
+  }
+
+  return erros;
 }

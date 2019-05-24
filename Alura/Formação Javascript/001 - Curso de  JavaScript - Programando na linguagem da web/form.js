@@ -10,10 +10,20 @@ botaoAdicionar.addEventListener("click", function(event){
 
   var pacienteTr = montaTr(paciente);
   
+  erros = validaPaciente(paciente);
+
+  console.log(erros);
+  if(erros.length > 0){
+    exibeMensagemErro(erros);
+    return;
+  }
+
   var tabela = document.querySelector("#tabela-pacientes");
   tabela.appendChild(pacienteTr);
 
   form.reset();
+  var ul = document.querySelector("#mensagem-erro");
+  ul.innerHTML = "";
 });
 
 titulo.addEventListener("click", function(){
@@ -52,4 +62,15 @@ function montaTd(dado, classe){
   td.textContent = dado;
   td.classList.add(classe);
   return td;
+}
+
+function exibeMensagemErro(erros){
+  var ul = document.querySelector("#mensagem-erro");
+  ul.innerHTML = "";
+
+  erros.forEach(function(erro){
+    var li = document.createElement("li");
+    li.textContent = erro;
+    ul.appendChild(li);
+  });
 }
