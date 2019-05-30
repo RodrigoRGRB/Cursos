@@ -1,5 +1,9 @@
 class NegociacoesView{
 
+    constructor(element){
+        this.element
+    }
+
     _template(){
         return `
         <table class="table table-hover table-bordered">
