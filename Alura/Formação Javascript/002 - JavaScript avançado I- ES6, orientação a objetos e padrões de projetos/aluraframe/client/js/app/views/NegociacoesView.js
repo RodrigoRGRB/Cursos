@@ -1,7 +1,7 @@
 class NegociacoesView{
 
     constructor(element){
-        this.element
+        this._elemento = element;
     }
 
     _template(){
@@ -22,5 +22,9 @@ class NegociacoesView{
             <tfoot>
             </tfoot>
         </table>`
+    }
+
+    update(){
+        this._elemento.innerHTML = this._template();
     }
 }
