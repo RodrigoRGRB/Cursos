@@ -42,3 +42,4 @@ class NegociacoesView{
         this._elemento.innerHTML = this._template(model);
     }
 }
+
